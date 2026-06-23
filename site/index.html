@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MusicWire &mdash; Fast. Factual. On the wire.</title>
+  <meta name="description" content="MusicWire is an independent online music publication. Breaking news, reviews, features, charts, and industry coverage. Fast. Factual. On the wire.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MusicWire &mdash; Fast. Factual. On the wire.">
+  <meta property="og:description" content="The music industry is a beat. We cover it.">
+  <meta name="theme-color" content="#1A5CFF">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <div class="breaking-ticker">
+    <span class="ticker-label">LIVE</span>
+    <div class="ticker-track">MusicWire &mdash; Fast. Factual. On the wire. &mdash; Est. 2026 &mdash; musicwire.com &mdash; Breaking music news daily</div>
+  </div>
+
+  <header class="site-header">
+    <div class="header-top">
+      <div class="container header-top-inner">
+        <span class="mono" id="hdr-date"></span>
+        <nav class="header-utility"><a href="sections/about.html">About</a></nav>
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="container header-main-inner">
+        <a href="index.html" class="site-wordmark" aria-label="MusicWire">
+          <span class="wm-music">MUSIC</span>
+          <span class="wm-rule"></span>
+          <span class="wm-wire">WIRE</span>
+        </a>
+        <nav class="site-nav">
+          <a href="sections/news.html">News</a>
+          <a href="sections/reviews.html">Reviews</a>
+          <a href="sections/features.html">Features</a>
+          <a href="sections/charts.html">Charts</a>
+          <a href="sections/industry.html">Industry</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="breaking-banner" id="breaking-banner">
+    <div class="container breaking-banner-inner">
+      <span class="break-tag">BREAKING</span>
+      <span class="break-text" id="break-text"></span>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+
+      <section class="lead-story">
+        <div class="lead-image-wrap" id="lead-img-wrap"></div>
+        <div class="lead-content">
+          <span class="section-tag" id="lead-tag">NEWS</span>
+          <h1 class="lead-headline" id="lead-headline">The Music Industry Is A Beat. We Cover It.</h1>
+          <p class="lead-deck" id="lead-deck">MusicWire launches as an independent music publication &mdash; built for speed, accuracy, and editorial independence.</p>
+          <div class="lead-meta">
+            <span class="mono" id="lead-date"></span>
+            <a href="sections/news.html" class="read-link">Read &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="wire-divider"></div>
+
+      <section class="section-block">
+        <div class="section-header-row">
+          <h2 class="section-label">Latest News</h2>
+          <a href="sections/news.html" class="section-all-link">All News &rarr;</a>
+        </div>
+        <div id="news-container"><div class="loading-mono">Loading&hellip;</div></div>
+      </section>
+
+      <div class="wire-divider"></div>
+
+      <section class="section-block">
+        <div class="section-header-row">
+          <h2 class="section-label">Reviews</h2>
+          <a href="sections/reviews.html" class="section-all-link">All Reviews &rarr;</a>
+        </div>
+        <div id="reviews-container" class="cards-grid"><div class="loading-mono" style="grid-column:span 3">Loading&hellip;</div></div>
+      </section>
+
+      <div class="wire-divider"></div>
+
+      <section class="section-block">
+        <div class="section-header-row">
+          <h2 class="section-label">Features</h2>
+          <a href="sections/features.html" class="section-all-link">All Features &rarr;</a>
+        </div>
+        <div id="features-container" class="cards-grid"><div class="loading-mono" style="grid-column:span 3">Loading&hellip;</div></div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-wm">
+          <span class="wm-music">MUSIC</span>
+          <span class="wm-rule"></span>
+          <span class="wm-wire">WIRE</span>
+        </div>
+        <p class="footer-tag">Fast. Factual. On the wire.</p>
+        <p class="mono ftr-domain">musicwire.com &mdash; Est. 2026</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="sections/news.html">News</a>
+        <a href="sections/reviews.html">Reviews</a>
+        <a href="sections/features.html">Features</a>
+        <a href="sections/charts.html">Charts</a>
+        <a href="sections/industry.html">Industry</a>
+        <a href="sections/opinion.html">Opinion</a>
+        <a href="sections/live.html">Live</a>
+        <a href="sections/about.html">About</a>
+      </nav>
+      <p class="footer-stmt">MusicWire is an independent online music publication. All editorial content &copy; MusicWire 2026. Reproduction without written permission is prohibited. MusicWire accepts no editorial direction from record labels, management companies, or advertisers.</p>
+    </div>
+    <div class="footer-bottom">
+      <div class="container ftr-btm">
+        <span class="mono">&copy; MusicWire 2026 &mdash; All rights reserved.</span>
+        <span class="mono">musicwire.com</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    const d = new Date(), M = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const hdr = document.getElementById('hdr-date');
+    if (hdr) hdr.textContent = d.getDate() + ' ' + M[d.getMonth()] + ' ' + d.getFullYear();
+  </script>
+</body>
+</html>
