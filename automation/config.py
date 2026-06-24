@@ -9,16 +9,16 @@ SECTIONS_DIR  = SITE_DIR / 'sections'
 API_DIR       = SITE_DIR / 'api'
 ARTICLES_JSON = API_DIR / 'articles.json'
 
-ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY', '')
-LASTFM_API_KEY    = os.getenv('LASTFM_API_KEY', '')
-NEWS_API_KEY      = os.getenv('NEWS_API_KEY', '')
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '')
+LASTFM_API_KEY = os.getenv('LASTFM_API_KEY', '')
+NEWS_API_KEY   = os.getenv('NEWS_API_KEY', '')
 
 PUBLISH_TIMES_UTC    = ['06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
 MAX_NEWS_PER_DAY     = 6
 MAX_REVIEWS_PER_DAY  = 3
 MAX_FEATURES_PER_DAY = 2
 
-ANTHROPIC_MODEL = os.getenv('ANTHROPIC_MODEL', 'claude-sonnet-4-6')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.0-flash')
 
 RSS_FEEDS = [
     'https://www.rollingstone.com/music/music-news/feed/',

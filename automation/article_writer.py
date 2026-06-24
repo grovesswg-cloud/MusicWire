@@ -6,15 +6,16 @@ import re
 log = logging.getLogger('musicwire.writer')
 
 try:
-    import anthropic
-    from config import ANTHROPIC_API_KEY, ANTHROPIC_MODEL, MUSICWIRE_VOICE
+    import google.generativeai as genai
+    from config import GEMINI_API_KEY, GEMINI_MODEL, MUSICWIRE_VOICE
 except ImportError as e:
     log.error("Import error: %s", e)
     raise
 
 
 def write_news(news_item: dict) -> dict:
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel(GEMINI_MODEL)
     prompt = f"""You are the news desk at MusicWire. Write a breaking news story based on this source item.
 
 {MUSICWIRE_VOICE}
@@ -36,10 +37,6 @@ Return valid JSON only — no markdown, no commentary:
   "tags": ["tag1", "tag2", "tag3"]
 }}"""
 
-    resp = client.messages.create(
-        model=ANTHROPIC_MODEL,
-        max_tokens=1500,
-        messages=[{'role': 'user', 'content': prompt}],
-    )
-    raw = re.sub(r'^```(?:json)?\s*|\s*```$', '', resp.content[0].text.strip())
+    resp = model.generate_content(prompt)
+    raw = re.sub(r'^```(?:json)?\s*|\s*```$', '', resp.text.strip())
     return json.loads(raw)

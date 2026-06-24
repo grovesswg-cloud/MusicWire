@@ -7,8 +7,8 @@ import re
 log = logging.getLogger('musicwire.albums')
 
 try:
-    import anthropic
-    from config import ANTHROPIC_API_KEY, ANTHROPIC_MODEL
+    import google.generativeai as genai
+    from config import GEMINI_API_KEY, GEMINI_MODEL
 except ImportError as e:
     log.error("Import error: %s", e)
     raise
@@ -42,7 +42,8 @@ CLASSIC_ALBUMS = [
 
 
 def extract_album_from_news(news_items: list[dict]) -> dict | None:
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel(GEMINI_MODEL)
     headlines = '\n'.join(f"- {item['title']}" for item in news_items[:20])
     prompt = f"""Identify one specific music album release from these headlines.
 Only return a result if there is a clear, specific album title by a named artist.
@@ -55,12 +56,8 @@ Return valid JSON only:
 {{"artist": "Name", "album": "Title", "year": "2026", "genre": "Genre", "context": "Brief context"}}
 Or if no album: null"""
 
-    resp = client.messages.create(
-        model=ANTHROPIC_MODEL,
-        max_tokens=300,
-        messages=[{'role': 'user', 'content': prompt}],
-    )
-    raw = re.sub(r'^```(?:json)?\s*|\s*```$', '', resp.content[0].text.strip())
+    resp = model.generate_content(prompt)
+    raw = re.sub(r'^```(?:json)?\s*|\s*```$', '', resp.text.strip())
     if raw.lower() == 'null':
         return None
     try:

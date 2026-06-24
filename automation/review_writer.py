@@ -8,8 +8,8 @@ import re
 log = logging.getLogger('musicwire.reviews')
 
 try:
-    import anthropic
-    from config import ANTHROPIC_API_KEY, ANTHROPIC_MODEL, MUSICWIRE_VOICE
+    import google.generativeai as genai
+    from config import GEMINI_API_KEY, GEMINI_MODEL, MUSICWIRE_VOICE
 except ImportError as e:
     log.error("Import error: %s", e)
     raise
@@ -25,7 +25,8 @@ WIRE SCALE — use exactly one of these values:
 
 
 def write_review(album_info: dict) -> dict:
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel(GEMINI_MODEL)
     prompt = f"""You are the reviews desk at MusicWire. Write a critical album review.
 
 {MUSICWIRE_VOICE}
@@ -53,17 +54,14 @@ Return valid JSON only:
   "tags": ["tag1", "tag2", "tag3"]
 }}"""
 
-    resp = client.messages.create(
-        model=ANTHROPIC_MODEL,
-        max_tokens=2500,
-        messages=[{'role': 'user', 'content': prompt}],
-    )
-    raw = re.sub(r'^```(?:json)?\s*|\s*```$', '', resp.content[0].text.strip())
+    resp = model.generate_content(prompt)
+    raw = re.sub(r'^```(?:json)?\s*|\s*```$', '', resp.text.strip())
     return json.loads(raw)
 
 
 def write_classic_review(album_info: dict) -> dict:
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel(GEMINI_MODEL)
     prompt = f"""You are the reviews desk at MusicWire. Write a retrospective reassessment of a classic album.
 
 {MUSICWIRE_VOICE}
@@ -90,10 +88,6 @@ Return valid JSON only:
   "tags": ["reassessment", "classic"]
 }}"""
 
-    resp = client.messages.create(
-        model=ANTHROPIC_MODEL,
-        max_tokens=2500,
-        messages=[{'role': 'user', 'content': prompt}],
-    )
-    raw = re.sub(r'^```(?:json)?\s*|\s*```$', '', resp.content[0].text.strip())
+    resp = model.generate_content(prompt)
+    raw = re.sub(r'^```(?:json)?\s*|\s*```$', '', resp.text.strip())
     return json.loads(raw)
